@@ -247,7 +247,13 @@ func rbdMap(name string) (*string, error) {
 		log.Print(string(out))
 		return nil, err
 	}
-	device := strings.TrimRight(string(out), "\n")
+	out1, _, err := sh(fmt.Sprintf("rbd showmapped |grep %s| awk 'NR==1 {print $5}'", name))
+	if err != nil {
+		log.Print(string(out1))
+		return nil, err
+	}
+	
+	device := strings.TrimRight(string(out1), "\n")
 	log.Printf("rbd map %s => %q", name, device)
 	return &device, nil
 }
