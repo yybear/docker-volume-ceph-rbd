@@ -10,7 +10,7 @@ import (
 
 const (
 	cephId   = "_ceph"
-	socketAddress = "/usr/share/docker/plugins/ceph.sock"
+	socketAddress = "/run/docker/plugins/ceph.sock"
 )
 
 var (
