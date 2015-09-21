@@ -116,7 +116,7 @@ func (d cephDriver) Create(r dkvolume.Request) dkvolume.Response {
 	}
 
 	if !exists {
-		if out, _, err := sh(fmt.Sprintf("rbd create --size 128 %s", name)); err != nil {
+		if out, _, err := sh(fmt.Sprintf("rbd create --size 512 %s", name)); err != nil {
 			log.Print(string(out))
 			return dkvolume.Response{Err: err.Error()}
 		}
