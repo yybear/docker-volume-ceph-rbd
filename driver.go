@@ -58,7 +58,7 @@ func ensureFs(name string) dkvolume.Response {
 
 	t, err := checkFs(*device)
 	log.Printf("t => %q", t)
-	if !strings.HasSuffix(t, "TYPE=\"xfs\"") {
+	if !strings.ContainsAny(t, "TYPE=\"xfs\"") {
 		log.Printf("Formatting %s", *device)
 		out, _, err := sh(fmt.Sprintf("mkfs.xfs -f %s", *device))
 		if err != nil {
